@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Reddit Original Language Redirector",
+  "version": "1.0.0",
+  "description": "Avoid Reddit's zh-Hant translation by redirecting translated Reddit URLs to the original view.",
+  "permissions": [
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": [
+    "https://reddit.com/*",
+    "https://*.reddit.com/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "reddit_original_language_rules",
+        "enabled": true,
+        "path": "rules/reddit-original-language.json"
+      }
+    ]
+  },
+  "action": {
+    "default_title": "Reddit Original Language Redirector"
+  }
+}

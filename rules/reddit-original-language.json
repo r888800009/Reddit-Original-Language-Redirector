@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "transform": {
+          "queryTransform": {
+            "removeParams": [
+              "tl"
+            ],
+            "addOrReplaceParams": [
+              {
+                "key": "show",
+                "value": "original"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "condition": {
+      "regexFilter": "^https://([a-z0-9-]+\\.)?reddit\\.com/.*[?&]tl=zh-hant(&|$)",
+      "isUrlFilterCaseSensitive": false,
+      "requestDomains": [
+        "reddit.com"
+      ],
+      "resourceTypes": [
+        "main_frame"
+      ]
+    }
+  }
+]
