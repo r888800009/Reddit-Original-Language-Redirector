@@ -1,48 +1,58 @@
 # Reddit Original Language Redirector
 
-A tiny Chrome extension that prevents Reddit links containing `?tl=zh-hant` from opening in Reddit's translated Traditional Chinese view.
+Reddit Original Language Redirector 是一個小型 Chrome 擴充功能，用來自動將 Reddit 的 zh-Hant 翻譯網址重新導向到原始語言頁面。它會移除 Reddit URL 中的 `tl=zh-hant` 參數，並加入 `show=original`，避免 Reddit 自動顯示繁體中文、粵語或其他不想要的翻譯內容。
 
-When a Reddit page URL contains `tl=zh-hant`, the extension redirects the top-level page navigation by:
+適合想關閉 Reddit 自動翻譯、固定查看 Reddit 原文、避免 Reddit 中文翻譯頁面的使用者。
 
-1. removing the `tl` query parameter, and
-2. adding or replacing `show=original`.
+## 功能特色
 
-Example:
+- 自動將 Reddit 翻譯頁面導向原始語言頁面。
+- 移除 `tl=zh-hant`，並加入或替換為 `show=original`。
+- 支援 `reddit.com` 與 `www.reddit.com` 等 Reddit 網域。
+- 使用 Chrome Manifest V3 與 Declarative Net Request。
+- 不讀取頁面內容，不收集瀏覽資料。
+
+當 Reddit 頁面網址包含 `tl=zh-hant` 時，這個擴充功能會在頂層頁面導覽時重新導向，方式如下：
+
+1. 移除 `tl` query 參數。
+2. 加上或替換為 `show=original`。
+
+範例：
 
 ```text
 https://www.reddit.com/r/example/comments/abc123/title/?tl=zh-hant
 ```
 
-becomes:
+會變成：
 
 ```text
 https://www.reddit.com/r/example/comments/abc123/title/?show=original
 ```
 
-## Purpose
+## 用途
 
-The purpose of this extension is to avoid Reddit translating content into Cantonese or other unwanted zh-Hant translated output, and to show the original Reddit page instead.
+這個 Chrome 擴充功能的用途是避免 Reddit 將內容翻譯成粵語或其他不想要的 zh-Hant 翻譯輸出，改為顯示 Reddit 原始頁面。
 
-It is intentionally small and uses the minimum permissions needed to do this safely.
+它刻意保持簡單，只使用安全完成此功能所需的最低權限。
 
-## Privacy and permissions
+## 隱私與權限
 
-This extension follows a least-privilege design:
+這個擴充功能採用最小權限設計：
 
-- Uses Manifest V3.
-- Uses `declarativeNetRequestWithHostAccess` instead of reading page content.
-- Only requests host access for Reddit URLs:
+- 使用 Manifest V3。
+- 使用 `declarativeNetRequestWithHostAccess`，不讀取頁面內容。
+- 只要求 Reddit 網址的 host access：
   - `https://reddit.com/*`
   - `https://*.reddit.com/*`
-- Only acts on top-level Reddit page navigations.
-- Does not use content scripts.
-- Does not use a background service worker.
-- Does not use `tabs`, `storage`, `cookies`, or `webRequest`.
-- Does not collect, store, transmit, or inspect browsing data.
+- 只作用於頂層 Reddit 頁面導覽。
+- 不使用 content scripts。
+- 不使用 background service worker。
+- 不使用 `tabs`、`storage`、`cookies` 或 `webRequest`。
+- 不收集、儲存、傳送或檢查瀏覽資料。
 
-The extension only declares one static redirect rule in `rules/reddit-original-language.json`.
+這個擴充功能只在 `rules/reddit-original-language.json` 宣告一條靜態重新導向規則。
 
-## Files
+## 檔案
 
 ```text
 manifest.json
@@ -50,24 +60,24 @@ rules/reddit-original-language.json
 README.md
 ```
 
-## Install locally
+## 本機安裝
 
-1. Unzip this package.
-2. Open Chrome and go to `chrome://extensions/`.
-3. Enable **Developer mode**.
-4. Click **Load unpacked**.
-5. Select the unzipped extension folder.
+1. 解壓縮這個套件。
+2. 開啟 Chrome 並前往 `chrome://extensions/`。
+3. 啟用 **Developer mode**。
+4. 點選 **Load unpacked**。
+5. 選擇解壓縮後的擴充功能資料夾。
 
-## Test
+## 測試
 
-Open a Reddit URL containing `tl=zh-hant`, for example:
+開啟一個包含 `tl=zh-hant` 的 Reddit 網址，例如：
 
 ```text
 https://www.reddit.com/r/example/comments/abc123/title/?tl=zh-hant
 ```
 
-Chrome should redirect it to the same Reddit URL with `tl` removed and `show=original` added.
+Chrome 應該會將它重新導向到同一個 Reddit 網址，並移除 `tl`、加上 `show=original`。
 
-## Design notes
+## 設計說明
 
-This extension uses a static Declarative Net Request rule because it is more privacy-preserving than intercepting requests with JavaScript. The browser performs the redirect based on the packaged rule, so the extension does not need to read the page, access Reddit content, or run code on Reddit pages.
+這個擴充功能使用靜態 Declarative Net Request 規則，因為它比用 JavaScript 攔截請求更能保護隱私。瀏覽器會根據封裝在擴充功能內的規則執行重新導向，因此擴充功能不需要讀取頁面、存取 Reddit 內容，或在 Reddit 頁面上執行程式碼。
