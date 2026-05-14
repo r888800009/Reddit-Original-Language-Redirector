@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Reddit Original Language Redirector",
   "version": "1.0.0",
-  "description": "Redirect Reddit zh-Hant translated URLs to the original language view.",
+  "description": "Redirect Reddit translated URLs to the original language view.",
   "permissions": [
     "declarativeNetRequestWithHostAccess"
   ],

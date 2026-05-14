@@ -1,18 +1,18 @@
 # Reddit Original Language Redirector
 
-Reddit Original Language Redirector 是一個小型 Chrome 擴充功能，用來自動將 Reddit 的 zh-Hant 翻譯網址重新導向到原始語言頁面。它會移除 Reddit URL 中的 `tl=zh-hant` 參數，並加入 `show=original`，避免 Reddit 自動顯示繁體中文、粵語或其他不想要的翻譯內容。
+Reddit Original Language Redirector 是一個小型 Chrome 擴充功能，用來自動將 Reddit 的翻譯網址重新導向到原始語言頁面。它會移除 Reddit URL 中的 `tl` 語言參數，並加入 `show=original`，避免 Reddit 自動顯示不想要的翻譯內容。
 
-適合想關閉 Reddit 自動翻譯、固定查看 Reddit 原文、避免 Reddit 中文翻譯頁面的使用者。
+適合想關閉 Reddit 自動翻譯、固定查看 Reddit 原文、避免 Reddit 翻譯頁面的使用者。
 
 ## 功能特色
 
 - 自動將 Reddit 翻譯頁面導向原始語言頁面。
-- 移除 `tl=zh-hant`，並加入或替換為 `show=original`。
+- 移除任意 `tl=<language code>`，並加入或替換為 `show=original`。
 - 支援 `reddit.com` 與 `www.reddit.com` 等 Reddit 網域。
 - 使用 Chrome Manifest V3 與 Declarative Net Request。
 - 不讀取頁面內容，不收集瀏覽資料。
 
-當 Reddit 頁面網址包含 `tl=zh-hant` 時，這個擴充功能會在頂層頁面導覽時重新導向，方式如下：
+當 Reddit 頁面網址包含 `tl` 語言參數時，這個擴充功能會在頂層頁面導覽時重新導向，方式如下：
 
 1. 移除 `tl` query 參數。
 2. 加上或替換為 `show=original`。
@@ -31,7 +31,7 @@ https://www.reddit.com/r/example/comments/abc123/title/?show=original
 
 ## 用途
 
-這個 Chrome 擴充功能的用途是避免 Reddit 將內容翻譯成粵語或其他不想要的 zh-Hant 翻譯輸出，改為顯示 Reddit 原始頁面。
+這個 Chrome 擴充功能的用途是避免 Reddit 將內容翻譯成任何不想要的語言，改為顯示 Reddit 原始頁面。
 
 它刻意保持簡單，只使用安全完成此功能所需的最低權限。
 
@@ -70,7 +70,7 @@ README.md
 
 ## 測試
 
-開啟一個包含 `tl=zh-hant` 的 Reddit 網址，例如：
+開啟一個包含 `tl` 語言參數的 Reddit 網址，例如：
 
 ```text
 https://www.reddit.com/r/example/comments/abc123/title/?tl=zh-hant

@@ -21,7 +21,7 @@
       }
     },
     "condition": {
-      "regexFilter": "^https://([a-z0-9-]+\\.)?reddit\\.com/.*[?&]tl=zh-hant(&|$)",
+      "regexFilter": "^https://([a-z0-9-]+\\.)?reddit\\.com/.*[?&]tl=[^&#]*(&|#|$)",
       "isUrlFilterCaseSensitive": false,
       "requestDomains": [
         "reddit.com"
